@@ -70,9 +70,9 @@ config :block_scout_web, BlockScoutWeb.Chain,
   testnet_label_text: System.get_env("TESTNET_LABEL_TEXT", "Testnet")
 
 config :block_scout_web, :footer,
-  chat_link: System.get_env("FOOTER_CHAT_LINK", "https://docs.bluebuck.technology/"),
-  forum_link: System.get_env("FOOTER_FORUM_LINK", "https://forum.poa.network/c/blockscout"),
-  github_link: System.get_env("FOOTER_GITHUB_LINK", "https://github.com/blockscout/blockscout"),
+  chat_link: System.get_env("FOOTER_CHAT_LINK", "https://discord.gg/GR24Qz4zV8"),
+  forum_link: System.get_env("FOOTER_FORUM_LINK", "https://docs.bluebuck.technology/"),
+  github_link: System.get_env("FOOTER_GITHUB_LINK", "https://github.com/bluebucktech/bluebuck-evm"),
   enable_forum_link: ConfigHelper.parse_bool_env_var("FOOTER_ENABLE_FORUM_LINK")
 
 config :block_scout_web, :contract,

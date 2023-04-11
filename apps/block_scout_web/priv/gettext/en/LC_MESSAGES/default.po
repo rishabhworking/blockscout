@@ -500,7 +500,7 @@ msgstr ""
 
 #: lib/block_scout_web/templates/layout/_footer.html.eex:22
 #, elixir-autogen, elixir-format
-msgid "Blockscout is a tool for inspecting and analyzing EVM based blockchains. Blockchain explorer for Ethereum Networks."
+msgid "Bluebuck Scan is a tool for inspecting and analyzing Bluebuck Network. It enables Bluebuck community to go through the ledger, check transactions and verify deployed contracts on Bluebuck Virtual Machine (BVM)."
 msgstr ""
 
 #: lib/block_scout_web/templates/transaction_state/_state_change.html.eex:8

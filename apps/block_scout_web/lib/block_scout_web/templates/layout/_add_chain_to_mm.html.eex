@@ -5,9 +5,77 @@
     <li>
         <a 
             class="footer-link js-btn-add-chain-to-mm btn-add-chain-to-mm in-footer"
-            style="cursor: pointer;"
+            style="cursor: pointer;" onclick="addNetwork('web3');" 
         >
             <%= gettext("Add") <> " #{sub_network}" %>
         </a>
     </li>
 <% end %>
+<script src="/js/web3-utils.min.js"></script>
+<script src="/js/web3-eth.min.js"></script>
+<script src="/js/web3-providers-http.min.js"></script>
+<script type="text/javascript">
+        var eth;
+        var isTestnet = 'false';
+
+        async function addNetwork(type) {
+            
+            if (type === 'web3') {
+                if (typeof ethereum !== 'undefined') {
+                    eth = new Web3Eth(ethereum);
+                } else if (typeof web3 !== 'undefined') {
+                    eth = new Web3Eth(web3.givenProvider);
+                } else {
+                    eth = new Web3Eth(ethereum);
+                }                
+            }            
+
+            if (typeof eth !== 'undefined') {
+                var network = 0;
+                network = await eth.net.getId();
+                netID = network.toString();
+                var params;
+                if (isTestnet == "false") {
+                    if (netID == "6497") {
+                        alert("Bluebuck Network has already been added to Metamask.");
+                        return;
+                    } else {
+                        params = [{
+                            chainId: '0x1961',
+                            chainName: 'Bluebuck Mainnet',
+                            nativeCurrency: {
+                                name: 'Bluebuck',
+                                symbol: 'BBK',
+                                decimals: 18
+                            },
+                            rpcUrls: ['https://mainnet-rpc.bluebuck.technology/'],
+                            blockExplorerUrls: ['https://bluebuckscan.com//']
+                        }]
+                    }
+                } else {
+                    if (netID == "16497") {
+                        alert("Bluebuck Test Network has already been added to Metamask."); 
+                        return;
+                    } else {
+                        params = [{
+                            chainId: '0x4071',
+                            chainName: 'Bluebuck Testnet',
+                            nativeCurrency: {
+                                name: 'Bluebuck',
+                                symbol: 'tBBK',
+                                decimals: 18
+                            },
+                            rpcUrls: ['https://testnet-rpc.bluebuck.technology/'],
+                            blockExplorerUrls: ['https://testnet.bluebuckscan.com/']
+                        }]
+                    }
+                }
+
+                window.ethereum.request({ method: 'wallet_addEthereumChain', params })
+                    .then(() => console.log('Success'))
+                    .catch((error) => console.log("Error", error.message));
+            } else {
+                alert('Unable to locate a compatible web3 browser!');
+            }
+        }
+    </script>
